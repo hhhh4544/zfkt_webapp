@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import './index.less';
-import logo from '../../common/images/logo.png'
+import logo from '../../common/images/logo.png';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 export default class HomeHeader extends Component{
     constructor(){
         super();
@@ -22,11 +23,20 @@ export default class HomeHeader extends Component{
                             :<i className="iconfont icon-uilist"></i>}
                     </div>
                 </div>
-                {this.state.isShow?<ul className="header-menu">
-                    <li>node课程</li>
-                    <li>javascript课程</li>
-                    <li>css课程</li>
-                </ul>:''}
+                <ReactCSSTransitionGroup
+                    transitionName="example"
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={300}>
+                    {this.state.isShow?<ul className="header-menu">
+                        <li>node课程</li>
+                        <li>javascript课程</li>
+                        <li>css课程</li>
+                    </ul>:''}
+                </ReactCSSTransitionGroup>
+
+
+
+
             </div>
         )
     }
