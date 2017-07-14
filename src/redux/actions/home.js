@@ -29,10 +29,17 @@ export const getLesson = () => (dispatch,getState) =>{
         return
     }
     //loading改成正在加载的状态
+    dispatch({
+       type:Types.CHANGE_LOADING_STATUS,
+       isLoading:true
+    });
     getLessons(currentLesson,offset,limit).then(data=>{ //data=>{hasMore,lessons}
-        dispatch({
-            type:Types.GET_LESSON_LIST,
-            ...data //将获取的数据发送给reducer
-        })
+        setTimeout(()=>{
+            dispatch({
+                type:Types.GET_LESSON_LIST,
+                ...data //将获取的数据发送给reducer
+            })
+        },1000)
+
     });
 };

@@ -28,6 +28,14 @@ export function home(state=initState,action) {
                     offset:state.lessons.list.length+action.lessons.length
                 }
             }
+        case Types.CHANGE_LOADING_STATUS:
+            return {
+                ...state,
+                lessons:{
+                    ...state.lessons,
+                    isLoading:action.isLoading
+                }
+            }
     }
     return state;
 }
