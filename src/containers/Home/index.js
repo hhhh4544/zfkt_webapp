@@ -15,6 +15,7 @@ export default class Home extends Component{
     };
     componentWillMount(){
         this.props.getSlider();
+        this.props.getLesson();
     }
     render(){
         console.log(this.props);

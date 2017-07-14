@@ -11,4 +11,9 @@ let sliders = require('./slider');
 router.get('/api/sliders',(ctx)=>{
     ctx.body = sliders;
 });
+//获取课程列表接口
+let lessonList = require('./lessonList');
+router.get('/api/lessons/:type/:offset/:limit',ctx=>{
+    ctx.body = lessonList;
+});
 app.listen(3000);

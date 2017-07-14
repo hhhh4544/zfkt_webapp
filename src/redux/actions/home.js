@@ -1,6 +1,6 @@
 import * as Types from '../action-types';
 //一个个actionCreator
-import {getSliders} from '../../api/home'
+import {getSliders,getLessons} from '../../api/home'
 export function setCurrentLesson(num) {
     return {
         type:Types.SET_CURRENT_LESSON,
@@ -13,6 +13,26 @@ export const getSlider=()=>(dispatch,getState)=>{
         dispatch({
             type:Types.GET_SLIDERS,
             sliders
+        })
+    });
+};
+export const getLesson = () => (dispatch,getState) =>{
+    let {
+        currentLesson,
+        lessons:{
+            hasMore,
+            offset,
+            limit
+        }
+    } = getState().home;
+    if(!hasMore){ //没有更多 就停止了
+        return
+    }
+    //loading改成正在加载的状态
+    getLessons(currentLesson,offset,limit).then(data=>{ //data=>{hasMore,lessons}
+        dispatch({
+            type:Types.GET_LESSON_LIST,
+            ...data //将获取的数据发送给reducer
         })
     });
 };
