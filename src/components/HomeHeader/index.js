@@ -12,6 +12,22 @@ export default class HomeHeader extends Component{
             isShow:!this.state.isShow
         })
     };
+    choose=(e)=>{
+        let type = e.target.innerText;
+        switch (type){
+            case 'node课程':
+                type=1;
+                break;
+            case 'javascript课程':
+                type=2;
+                break;
+            case 'css课程':
+                type=3;
+                break;
+        }
+        this.props.choose(type);
+        this.handleChange();
+    };
     render(){
         return (
             <div className="home-header">
@@ -27,16 +43,12 @@ export default class HomeHeader extends Component{
                     transitionName="example"
                     transitionEnterTimeout={500}
                     transitionLeaveTimeout={300}>
-                    {this.state.isShow?<ul className="header-menu">
+                    {this.state.isShow?<ul className="header-menu" onClick={this.choose}>
                         <li>node课程</li>
                         <li>javascript课程</li>
                         <li>css课程</li>
                     </ul>:''}
                 </ReactCSSTransitionGroup>
-
-
-
-
             </div>
         )
     }

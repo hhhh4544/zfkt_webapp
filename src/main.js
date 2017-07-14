@@ -9,8 +9,11 @@ import './common/css/index.less';
 import store from './redux';//导出后的store
 window._store = store;
 import {Provider} from 'react-redux';
+import {ConnectedRouter} from 'react-router-redux'; //1.引入链接路由
+import createHistory from 'history/createHashHistory';//帮我们创建history对象
+let history = createHistory();
 render(<Provider store={store}>
-    <Router>
+    <ConnectedRouter history={history}>
         <App>
             <Switch>
                 <Route path={'/home'} component={Home}/>
@@ -19,5 +22,5 @@ render(<Provider store={store}>
                 <Redirect to="/home"/>
             </Switch>
         </App>
-    </Router>
+    </ConnectedRouter>
 </Provider>,document.getElementById('app'));
